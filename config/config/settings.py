@@ -99,9 +99,9 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'issue_tracker_db',
         'USER': 'postgres',
-        'PASSWORD': 'yourpassword',
-        'HOST': 'localhost',
-        'PORT': '5431',
+        'PASSWORD': 'amir3262',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
     }
 }
 
