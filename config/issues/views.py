@@ -5,6 +5,7 @@ from .serializers import IssueSerializer
 
 
 class IssueViewSet(viewsets.ModelViewSet):
+    queryset = Issue.objects.all()
     serializer_class = IssueSerializer
     permission_classes = [IsAuthenticated]
 
@@ -14,10 +15,10 @@ class IssueViewSet(viewsets.ModelViewSet):
         if user.role == 'ADMIN':
             return Issue.objects.all()
 
-        elif user.role == 'SUPPORT':
+        elif user.role == 'IT-TEAM':
             return Issue.objects.filter(assigned_to=user)
 
-        elif user.role == 'MERCHANT':
+        elif user.role == 'SUPPORT':
             return Issue.objects.filter(created_by=user)
 
         return Issue.objects.none()

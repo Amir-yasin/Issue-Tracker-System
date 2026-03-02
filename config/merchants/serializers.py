@@ -6,3 +6,4 @@ class MerchantSerializer(serializers.ModelSerializer):
     class Meta:
         model = Merchant
         fields = '__all__'
+        read_only_fields = ['created_by', 'status']
