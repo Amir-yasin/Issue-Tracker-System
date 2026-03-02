@@ -7,7 +7,7 @@ class Merchant(models.Model):
     contact_person = models.CharField(max_length=255)
     phone = models.CharField(max_length=20)
     MID = models.CharField(max_length=255)
-    TID = models.CharField(max_length=255)
+    TID = models.CharField(max_length=255, unique = True)
     SNO = models.CharField(max_length=255)
     address = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
