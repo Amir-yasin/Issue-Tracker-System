@@ -23,7 +23,7 @@ class Issue(models.Model):
 
     title = models.CharField(max_length=255)
     description = models.TextField()
-    MID = models.ForeignKey(Merchant, on_delete=models.CASCADE, related_name='merchant_i')
+    MID = models.ForeignKey(Merchant, on_delete=models.CASCADE, related_name='merchant_id_no')
     TID = models.ForeignKey(POS,  on_delete=models.CASCADE, related_name='terminal_id')
     SNO = models.ForeignKey(POS, on_delete=models.CASCADE, related_name='serial_number')
     merchant = models.ForeignKey(Merchant, on_delete=models.CASCADE, related_name='merchant_name')

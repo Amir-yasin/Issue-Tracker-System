@@ -2,7 +2,7 @@ from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from .models import Issue
 from .serializers import IssueSerializer
-
+from rest_framework.response import Response
 
 class IssueViewSet(viewsets.ModelViewSet):
     queryset = Issue.objects.all()
