@@ -1,6 +1,5 @@
 from django.urls import path
-from .views import DashboardSummaryView, StatusChartView, MonthlyReportView, MerchantReportView,
-)
+from .views import DashboardSummaryView, StatusChartView, MonthlyReportView, MerchantReportView
 
 urlpatterns = [
     path('summary/', DashboardSummaryView.as_view()),
