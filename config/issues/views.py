@@ -1,5 +1,5 @@
 from rest_framework import viewsets
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from .models import Issue
 from .serializers import IssueSerializer
 
@@ -25,3 +25,15 @@ class IssueViewSet(viewsets.ModelViewSet):
 
     def perform_create(self, serializer):
         serializer.save(created_by=self.request.user)
+
+    def update(self, request, *args, **kwargs):
+        instance = self.get_object()
+
+        if 'status' in request.data:
+            if request.user.role != 'ADMIN':
+                return Response(
+                    {"error": "Only ADMIN can change status"},
+                    status=403
+                )
+
+        return super().update(request, *args, **kwargs)
