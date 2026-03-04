@@ -21,3 +21,15 @@ class MerchantViewSet(viewsets.ModelViewSet):
 
     def perform_create(self, serializer):
         serializer.save(created_by=self.request.user)
+
+    def Delete(self, request, *args, **kwargs):
+        instance = self.get_object()
+
+        if 'id' in request.data:
+            if request.user.role != 'ADMIN':
+                return Response(
+                    {"error": "Only ADMIN can change status"},
+                    status=403
+                )
+
+        return super().update(request, *args, **kwargs)
