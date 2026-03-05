@@ -39,7 +39,8 @@ class Issue(models.Model):
         related_name='assigned_issues',
         on_delete=models.SET_NULL,
         null=True,
-        blank=True
+        blank=True,
+        default='Not Assigned'
     )
 
     priority = models.CharField(max_length=20, choices=PRIORITY_CHOICES)
