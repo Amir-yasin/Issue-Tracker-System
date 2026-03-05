@@ -1,13 +1,39 @@
-from rest_framework import viewsets
+from rest_framework import viewsets, filters
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from .models import Issue
 from .serializers import IssueSerializer
 from rest_framework.response import Response
+from django_filters.rest_framework import DjangoFilterBackend
+from .filters import IssueFilter
+
 
 class IssueViewSet(viewsets.ModelViewSet):
     queryset = Issue.objects.all()
     serializer_class = IssueSerializer
     permission_classes = [IsAuthenticated]
+
+    filter_backends = [
+        DjangoFilterBackend,
+        filters.SearchFilter,
+        filters.OrderingFilter
+    ]
+
+    filterset_class = IssueFilter
+
+    search_fields = [
+        'ticket_number',
+        'title',
+        'description'
+    ]
+
+    ordering_fields = [
+        'created_at',
+        'priority',
+        'status'
+    ]
+
+    ordering = ['-created_at']
+
 
     def get_queryset(self):
         user = self.request.user
@@ -37,3 +63,6 @@ class IssueViewSet(viewsets.ModelViewSet):
                 )
 
         return super().update(request, *args, **kwargs)
+    
+
+

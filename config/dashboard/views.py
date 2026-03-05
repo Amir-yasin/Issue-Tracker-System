@@ -25,10 +25,10 @@ class DashboardSummaryView(APIView):
 
         data = {
             "total_issues": queryset.count(),
-            "open": queryset.filter(status='OPEN').count(),
-            "in_progress": queryset.filter(status='IN_PROGRESS').count(),
-            "resolved": queryset.filter(status='RESOLVED').count(),
-            "closed": queryset.filter(status='CLOSED').count(),
+            "Pending": queryset.filter(status='PENDING').count(),
+            "In_progress": queryset.filter(status='IN_PROGRESS').count(),
+            "resolved": queryset.filter(status='FIXED').count(),
+            "Closed": queryset.filter(status='REJECTED').count(),
         }
 
         return Response(data)
