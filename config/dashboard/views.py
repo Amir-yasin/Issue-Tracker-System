@@ -32,7 +32,8 @@ class DashboardSummaryView(APIView):
         }
 
         return Response(data)
-    
+
+
     ##### STATUS CHART API (Pie Chart Data)
 class StatusChartView(APIView):
     permission_classes = [IsAuthenticated]
